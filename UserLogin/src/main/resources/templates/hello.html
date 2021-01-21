@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>User Profile Details!</title>
+</head>
+<body>
+<!--/*@thymesVar id="profileDetails" type="spring.assignment.login.ProfileCredentialsBean"*/-->
+<h1 th:text="${profileDetails.firstName}"></h1>
+<h1 th:text="${profileDetails.lastName}"></h1>
+<h1 th:text="${profileDetails.address}"></h1>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+</body>
+</html>
