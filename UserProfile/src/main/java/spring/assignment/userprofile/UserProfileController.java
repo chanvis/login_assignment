@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import spring.assignment.userprofile.model.UserProfile;
 import spring.assignment.userprofile.repository.UserProfileRepository;
@@ -53,6 +54,14 @@ public class UserProfileController {
         userProfile.setPort(port);
 
         return userProfile;
+    }
+
+    @PostMapping("saveProfileDetails/{userProfile}")
+    public UserProfile saveProfileDetails(@PathVariable UserProfile userProfile){
+        log.info("entered saveProfileDetails-controller");
+        log.info("user profile details", userProfile.getUserName());
+        UserProfile saveProfile = userProfileRepository.save(userProfile);
+        return saveProfile;
     }
 
 

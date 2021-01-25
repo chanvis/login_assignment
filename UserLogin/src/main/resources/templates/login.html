@@ -18,7 +18,7 @@
     You have been logged out.
 </div>
 <div class="container">
-<form th:action="@{/login}" method="post" class="form-signin">
+<form th:action="@{/login/loginUser}" method="post" class="form-signin">
     <h2 class="form-signin-heading">Please sign in</h2>
     <p>
         <label for="username" class="sr-only">Username</label>
@@ -30,6 +30,7 @@
     </p>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 </form>
+    <p>New User? Click <a th:href="@{/login/register}">here</a> </p>
 </div>
 </body>
 </html>

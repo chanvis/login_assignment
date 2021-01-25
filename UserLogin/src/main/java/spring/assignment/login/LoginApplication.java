@@ -10,9 +10,9 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-@EnableEurekaClient
+//@EnableEurekaClient
 @EnableFeignClients
-@EnableZuulProxy
+//@EnableZuulProxy
 public class LoginApplication {
 
     public static void main(String[] args) {

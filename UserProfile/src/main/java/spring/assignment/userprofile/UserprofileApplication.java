@@ -10,7 +10,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableFeignClients
-@EnableZuulProxy
+//@EnableZuulProxy
 public class UserprofileApplication {
 
     public static void main(String[] args) {
