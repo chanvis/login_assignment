@@ -80,7 +80,7 @@ public class LoginController  {
             if (loginCredentials != null && passwordEncoder.matches(password, loginCredentials.getPassword())) {
                 log.info("password match");
                 mav.addObject("username", username);
-                mav.setViewName("redirect:/profile/{username}");
+                mav.setViewName("redirect:http://localhost:8081/profile/profile/{username}");
             }
         }catch (Exception e){
             log.info("Invalid user");

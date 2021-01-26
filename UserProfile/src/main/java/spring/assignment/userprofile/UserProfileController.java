@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 import spring.assignment.userprofile.model.UserProfile;
 import spring.assignment.userprofile.repository.UserProfileRepository;
 
@@ -47,13 +48,15 @@ public class UserProfileController {
     }
 
     @GetMapping(value="/profile/{username}",produces={"application/json"})
-    public UserProfile getProfileDetails(@PathVariable String username) {
+    public ModelAndView getProfileDetails(@PathVariable String username) {
         log.info("entered get getProfileDetails");
         UserProfile userProfile = userProfileRepository.findByUserName(username);//.orElseThrow(() -> new NotFoundException("username: "+username+" not found"));
         int port= Integer.parseInt(environment.getProperty("local.server.port")) ;
         userProfile.setPort(port);
-
-        return userProfile;
+        ModelAndView mav = new ModelAndView("hello.html");
+        mav.addObject("userProfile", userProfile);
+        return mav;
+        //return userProfile;
     }
 
     @PostMapping("saveProfileDetails/{userProfile}")
