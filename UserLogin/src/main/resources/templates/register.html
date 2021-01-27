@@ -13,7 +13,7 @@
 <body>
 <!--/*@thymesVar id="profileCredentialsBean" type="spring.assignment.login.ProfileCredentialsBean"*/-->
 <div class="container">
-    <form th:object="${profileCredentialsBean}"  th:action="@{/saveregister}" method="post" class="form-signin">
+    <form th:object="${profileCredentialsBean}"  th:action="@{/login/saveregister}" method="post" class="form-signin">
         <input type="hidden" th:field="*{id}"/>
         <h2 class="form-signin-heading">Please Register</h2>
         <p>

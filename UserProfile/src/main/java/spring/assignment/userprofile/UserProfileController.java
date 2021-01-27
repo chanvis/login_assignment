@@ -3,11 +3,9 @@ package spring.assignment.userprofile;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import spring.assignment.common.ProfileCredentialsBean;
 import spring.assignment.userprofile.model.UserProfile;
 import spring.assignment.userprofile.repository.UserProfileRepository;
 
@@ -59,12 +57,17 @@ public class UserProfileController {
         //return userProfile;
     }
 
-    @PostMapping("saveProfileDetails/{userProfile}")
-    public UserProfile saveProfileDetails(@PathVariable UserProfile userProfile){
+    @PostMapping(value = "saveProfileDetails", consumes = "application/json")
+    public ProfileCredentialsBean saveProfileDetails(ProfileCredentialsBean profileCredentialsBean){
         log.info("entered saveProfileDetails-controller");
-        log.info("user profile details", userProfile.getUserName());
+        log.info("user profile details", profileCredentialsBean.getUsername());
+        UserProfile userProfile=new UserProfile();
+        userProfile.setUserName(profileCredentialsBean.getUsername());
+        userProfile.setFirstName(profileCredentialsBean.getFirstName());
+        userProfile.setLastName(profileCredentialsBean.getLastName());
+        userProfile.setAddress(profileCredentialsBean.getAddress());
         UserProfile saveProfile = userProfileRepository.save(userProfile);
-        return saveProfile;
+        return profileCredentialsBean;
     }
 
 
