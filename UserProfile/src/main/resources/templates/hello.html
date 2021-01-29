@@ -3,14 +3,29 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <title>User Profile Details!</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Please sign in</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
 </head>
 <body>
-<!--/*@thymesVar id="userProfile" type="spring.assignment.userprofile.model.UserProfile"*/-->
-<h1 th:text="${userProfile.firstName}"></h1>
-<h1 th:text="${userProfile.lastName}"></h1>
-<h1 th:text="${userProfile.address}"></h1>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
-</form>
+<div class="container">
+    <!--/*@thymesVar id="userProfile" type="spring.assignment.userprofile.model.UserProfile"*/-->
+    <p>
+        <label>FirstName : </label> <h2 th:text="${userProfile.firstName}"></h2>
+    </p>
+    <p>
+        <label>LastName : </label> <h2 th:text="${userProfile.lastName}"></h2>
+    </p>
+    <p>
+        <label>Address : </label> <h2 th:text="${userProfile.address}"></h2>
+    </p>
+    <form th:action="@{/login/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
 </body>
 </html>

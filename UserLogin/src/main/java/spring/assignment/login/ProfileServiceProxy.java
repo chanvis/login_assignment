@@ -13,7 +13,7 @@ public interface ProfileServiceProxy {
     @GetMapping("/profile/{username}")
     public ProfileCredentialsBean getProfileDetails(@PathVariable("username") String username);
 
-    @PostMapping(value="saveProfileDetails")
+    @PostMapping(value="/saveProfileDetails")
     public ProfileCredentialsBean saveProfileDetails( ProfileCredentialsBean profileCredentialsBean);
 
 

@@ -16,8 +16,8 @@
 //
 //import javax.sql.DataSource;
 //
-//@Configuration
-//@EnableWebSecurity
+////@Configuration
+////@EnableWebSecurity
 //@Slf4j
 //public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //
@@ -34,7 +34,7 @@
 //                .and()
 //                .formLogin()
 //                .loginPage("/login")
-//                .defaultSuccessUrl("/hello.html", true)
+//                .defaultSuccessUrl("http://localhost:8081/profile/profile/{username}", true)
 //                .permitAll()
 //                .and()
 //                .logout()

@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
+import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +47,15 @@ public class LoginController  {
     public ModelAndView getHello(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("hello.html");
+        return modelAndView;
+    }
+
+    @RequestMapping("/logout")
+    public ModelAndView LogOut(){
+        log.info("entered logout");
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("logout", "Logged out");
+        modelAndView.setViewName("login.html");
         return modelAndView;
     }
 
@@ -103,7 +113,7 @@ public class LoginController  {
 
 
 
-    @PostMapping(value="/saveregister",consumes = "application/json")
+    @PostMapping(value="/saveregister",consumes ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public ModelAndView saveRegistrationDetails(ProfileCredentialsBean profileCredentialsBean){
         log.info("entered save register-controller");
         log.info(profileCredentialsBean.getEmailAddress());
@@ -112,8 +122,8 @@ public class LoginController  {
         LoginCredentials loginCredentials=new LoginCredentials();
         loginCredentials.setUserName(profileCredentialsBean.getUsername());
         loginCredentials.setEmailAddress(profileCredentialsBean.getEmailAddress());
-        loginCredentials.setPassword(passwordEncoder.encode("password"));
-        //loginCredentials.setPassword(passwordEncoder.encode(profileCredentialsBean.getPassword()));
+        //loginCredentials.setPassword(passwordEncoder.encode("password"));
+        loginCredentials.setPassword(passwordEncoder.encode(profileCredentialsBean.getPassword()));
         loginCredentials.setRole("ROLE_USER");
         loginCredentials.setLoginAttempt(0);
         LoginCredentials savedDetails=loginService.saveRegistrationDetails(loginCredentials);
@@ -123,7 +133,7 @@ public class LoginController  {
         profileBean.setAddress(profileCredentialsBean.getAddress());
         profileBean.setFirstName(profileCredentialsBean.getFirstName());
         profileBean.setLastName(profileCredentialsBean.getLastName());
-        //ProfileCredentialsBean response = proxy.saveProfileDetails(profileBean);
+        ProfileCredentialsBean response = proxy.saveProfileDetails(profileBean);
         modelAndView.setViewName("details.html");
         return modelAndView;
     }

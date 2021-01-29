@@ -57,8 +57,8 @@ public class UserProfileController {
         //return userProfile;
     }
 
-    @PostMapping(value = "saveProfileDetails", consumes = "application/json")
-    public ProfileCredentialsBean saveProfileDetails(ProfileCredentialsBean profileCredentialsBean){
+    @PostMapping(value = "/saveProfileDetails", consumes = "application/json")
+    public ProfileCredentialsBean saveProfileDetails(@RequestBody ProfileCredentialsBean profileCredentialsBean){
         log.info("entered saveProfileDetails-controller");
         log.info("user profile details", profileCredentialsBean.getUsername());
         UserProfile userProfile=new UserProfile();
